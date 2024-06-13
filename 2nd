@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
+
+contract MyCoin { // Renamed contract name from MyToken
+
+  // Public variables for coin details
+  string public coinName; // Renamed name from name
+  string public coinSymbol; // Renamed symbol from symbol
+  uint256 public totalCoinSupply; // Renamed totalSupply from totalSupply
+
+  // Mapping for address to balance
+  mapping(address => uint256) public coinBalances; // Renamed balances from balances
+
+  // Mint function to create new coins
+  function mintCoin(address recipient, uint256 amount) public { // Renamed mint from mint
+    totalCoinSupply += amount;
+    coinBalances[recipient] += amount;
+  }
+
+  // Burn function to destroy coins
+  function burnCoin(uint256 amount) public { // Renamed burn from burn
+    require(coinBalances[msg.sender] >= amount, "Insufficient balance for burning");
+    totalCoinSupply -= amount;
+    coinBalances[msg.sender] -= amount;
+  }
+}
